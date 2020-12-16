@@ -42,7 +42,7 @@ PET=function(dataset, error = "additive") {
   }
   if (error == "multiplicative") {
     petOut = lm(Fisher.s.Z ~ Std.Err,
-                weights = 1/Std.Err,
+                weights = 1/Std.Err^2,
                 data=dataset)
   }
   return(petOut)
@@ -59,7 +59,7 @@ PEESE=function(dataset, error = "additive") {
   }
   if (error == "multiplicative") {
     peeseOut = lm(Fisher.s.Z ~ I(Std.Err^2), 
-                  weights = 1/Std.Err,
+                  weights = 1/Std.Err^2,
                   data=dataset)
   }
   return(peeseOut)
